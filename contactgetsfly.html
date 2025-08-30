@@ -223,72 +223,104 @@
                 </div>
             </div>
         </div>
-!-- FAQ Section -->
-    <section class="py-20 px-6 bg-white">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-            
-            <div class="space-y-4">
-                <!-- FAQ Item 1 -->
-                <div class="border border-[#ddd] rounded-xl overflow-hidden">
-                    <button class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center">
-                        <span>How quickly can you start working on my project?</span>
-                        <i class="fas fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="faq-answer p-6 hidden">
-                        <p class="text-[#666]">
-                            We typically begin new projects within 1-3 business days after receiving all necessary materials and the initial deposit. During peak seasons, there may be a slightly longer wait time, which we'll communicate upfront.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 2 -->
-                <div class="border border-[#ddd] rounded-xl overflow-hidden">
-                    <button class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center">
-                        <span>What information should I provide when contacting you?</span>
-                        <i class="fas fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="faq-answer p-6 hidden">
-                        <p class="text-[#666]">
-                            To help us serve you better, please include: your business name, project type (website, branding, etc.), desired timeline, budget range if applicable, and any specific requirements or examples of work you like. The more details you provide, the more accurate our proposal will be.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 3 -->
-                <div class="border border-[#ddd] rounded-xl overflow-hidden">
-                    <button class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center">
-                        <span>Do you offer ongoing support after project completion?</span>
-                        <i class="fas fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="faq-answer p-6 hidden">
-                        <p class="text-[#666]">
-                            Yes! We offer various support packages tailored to your needs, including monthly maintenance plans, content updates, and performance monitoring. We'll discuss these options with you before project completion.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 4 -->
-                <div class="border border-[#ddd] rounded-xl overflow-hidden">
-                    <button class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center">
-                        <span>What's your typical project pricing structure?</span>
-                        <i class="fas fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="faq-answer p-6 hidden">
-                        <p class="text-[#666]">
-                            We provide custom quotes based on each project's scope and requirements. Most projects are priced as flat fees, while ongoing services like social media management are typically monthly retainers. We'll provide transparent pricing after understanding your needs.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <p class="text-lg">
-                    Still have questions? <a href="#contact-form" class="text-[#7c3aed] font-bold hover:underline">Contact us directly</a>.
-                </p>
-            </div>
+<!-- FAQ Section -->
+<section class="py-20 px-6 bg-white">
+  <div class="container mx-auto max-w-4xl">
+    <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+
+    <div class="space-y-4">
+      <!-- FAQ Item -->
+      <div class="border border-[#ddd] rounded-xl overflow-hidden">
+        <button 
+          class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center"
+          aria-expanded="false"
+          aria-controls="faq1"
+          id="q1">
+          <span>How quickly can you start working on my project?</span>
+          <i class="fas fa-chevron-down transition-transform"></i>
+        </button>
+        <div id="faq1" role="region" aria-labelledby="q1" class="faq-answer p-6 hidden">
+          <p class="text-[#666]">
+            We typically begin new projects within 1-3 business days after receiving all necessary materials and the initial deposit. During peak seasons, there may be a slightly longer wait time, which we'll communicate upfront.
+          </p>
         </div>
-    </section>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="border border-[#ddd] rounded-xl overflow-hidden">
+        <button 
+          class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center"
+          aria-expanded="false"
+          aria-controls="faq2"
+          id="q2">
+          <span>What information should I provide when contacting you?</span>
+          <i class="fas fa-chevron-down transition-transform"></i>
+        </button>
+        <div id="faq2" role="region" aria-labelledby="q2" class="faq-answer p-6 hidden">
+          <p class="text-[#666]">
+            To help us serve you better, please include: your business name, project type (website, branding, etc.), desired timeline, budget range if applicable, and any specific requirements or examples of work you like. The more details you provide, the more accurate our proposal will be.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="border border-[#ddd] rounded-xl overflow-hidden">
+        <button 
+          class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center"
+          aria-expanded="false"
+          aria-controls="faq3"
+          id="q3">
+          <span>Do you offer ongoing support after project completion?</span>
+          <i class="fas fa-chevron-down transition-transform"></i>
+        </button>
+        <div id="faq3" role="region" aria-labelledby="q3" class="faq-answer p-6 hidden">
+          <p class="text-[#666]">
+            Yes! We offer various support packages tailored to your needs, including monthly maintenance plans, content updates, and performance monitoring. We'll discuss these options with you before project completion.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item -->
+      <div class="border border-[#ddd] rounded-xl overflow-hidden">
+        <button 
+          class="faq-question w-full text-left p-6 bg-[#f2f2f2] hover:bg-[#e9e9e9] transition font-bold flex justify-between items-center"
+          aria-expanded="false"
+          aria-controls="faq4"
+          id="q4">
+          <span>What's your typical project pricing structure?</span>
+          <i class="fas fa-chevron-down transition-transform"></i>
+        </button>
+        <div id="faq4" role="region" aria-labelledby="q4" class="faq-answer p-6 hidden">
+          <p class="text-[#666]">
+            We provide custom quotes based on each project's scope and requirements. Most projects are priced as flat fees, while ongoing services like social media management are typically monthly retainers. We'll provide transparent pricing after understanding your needs.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <p class="text-lg">
+        Still have questions? <a href="#contact-form" class="text-[#7c3aed] font-bold hover:underline">Contact us directly</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- JS Toggle -->
+<script>
+  document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+      const answer = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+
+      // Toggle state
+      button.setAttribute('aria-expanded', !expanded);
+      answer.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    });
+  });
+</script>
    <!-- Contact Section -->
 <section id="contact" class="py-20 px-6 bg-[#1f1f1f] text-white">
     <div class="container mx-auto">
@@ -461,3 +493,4 @@
 </body>
 
 </html>
+
