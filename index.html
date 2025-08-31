@@ -210,24 +210,23 @@
 
     // Toggle with first button
     mobileMenuButton?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
+<script>
+  const mobileMenuButton = document.getElementById('mobileMenuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
 
-    // Toggle with second button
-    menuBtn?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
+  // Toggle menu
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
 
-    // Close menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            mobileMenu.classList.add('hidden'); // keep consistent
-        });
+  // Close menu when clicking a link
+  const mobileLinks = mobileMenu.querySelectorAll('a');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
     });
+  });
 </script>
-
     </nav>
 
     <!-- Hero Section -->
@@ -787,6 +786,7 @@
 </body>
 
 </html>
+
 
 
 
