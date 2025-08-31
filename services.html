@@ -172,33 +172,31 @@
     </div>
 </div>
 
-<!-- Update your JavaScript at the bottom of the body -->
-<!-- Update your JavaScript at the bottom of the body -->
 <script>
     const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const menuBtn = document.getElementById('menuBtn'); // optional second button
+    const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    // Toggle menu with mobileMenuButton
+    // Toggle with first button
     mobileMenuButton?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('open');
     });
 
-    // Toggle menu with menuBtn (if exists)
+    // Toggle with second button
     menuBtn?.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
 
-    // Close menu when clicking a nav link
+    // Close menu when clicking on a link
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden'); // closes menu after redirect
+            mobileMenu.classList.remove('open');
+            mobileMenu.classList.add('hidden'); // keep consistent
         });
     });
 </script>
 
-        
     </nav>
 
     <!-- Services Hero -->
@@ -991,6 +989,7 @@
 </body>
 
 </html>
+
 
 
 
