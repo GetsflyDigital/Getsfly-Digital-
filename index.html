@@ -203,27 +203,27 @@
     </div>
 </div>
 
+<!-- Update your JavaScript at the bottom of the body -->
 <script>
     const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const menuBtn = document.getElementById('menuBtn');
+    const menuBtn = document.getElementById('menuBtn'); // optional second button
     const mobileMenu = document.getElementById('mobileMenu');
 
-    // Toggle with first button
+    // Toggle menu with mobileMenuButton
     mobileMenuButton?.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
+        mobileMenu.classList.toggle('hidden');
     });
 
-    // Toggle with second button
+    // Toggle menu with menuBtn (if exists)
     menuBtn?.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
 
-    // Close menu when clicking on a link
+    // Close menu when clicking a nav link
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-            mobileMenu.classList.add('hidden'); // keep consistent
+            mobileMenu.classList.add('hidden'); // closes menu after redirect
         });
     });
 </script>
@@ -786,6 +786,7 @@
 </body>
 
 </html>
+
 
 
 
