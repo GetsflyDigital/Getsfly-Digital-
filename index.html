@@ -203,14 +203,19 @@
     </div>
 </div>
 
-<!-- Update your JavaScript at the bottom of the body -->
 <script>
-    // Mobile menu toggle functionality
     const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    mobileMenuButton.addEventListener('click', () => {
+    // Toggle with first button
+    mobileMenuButton?.addEventListener('click', () => {
         mobileMenu.classList.toggle('open');
+    });
+
+    // Toggle with second button
+    menuBtn?.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
     });
 
     // Close menu when clicking on a link
@@ -218,23 +223,11 @@
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.remove('open');
+            mobileMenu.classList.add('hidden'); // keep consistent
         });
     });
 </script>
-</div>
 
-<script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-                </a>
-            </div>
-        </div>
-    </nav>
 
     <!-- Hero Section -->
     <section class="gradient-bg text-white pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6">
@@ -793,6 +786,7 @@
 </body>
 
 </html>
+
 
 
 
