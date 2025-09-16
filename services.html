@@ -177,24 +177,27 @@
 </div>
 
 <script>
-  const mobileMenuButton = document.getElementById('mobileMenuButton');
-  const mobileMenu = document.getElementById('mobileMenu');
+  document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-  if (mobileMenuButton && mobileMenu) {
-    // Toggle hidden class
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close when clicking a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
+    if (mobileMenuButton && mobileMenu) {
+      // Toggle hidden class
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
       });
-    });
-  }
+
+      // Close when clicking a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+        });
+      });
+    }
+  });
 </script>
+
 
     </nav>
 
@@ -988,6 +991,7 @@
 </body>
 
 </html>
+
 
 
 
