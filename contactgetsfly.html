@@ -66,36 +66,37 @@
                 </svg>
             </button>
         </div>
-        <!-- In your nav section, update the mobile menu HTML -->
-<div id="mobileMenu" class="mobile-menu md:hidden bg-white w-full px-4">
-    <div class="flex flex-col space-y-4 py-4">
-        <a href="index.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Home</a>
-        <a href="services.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Services</a>
-        <a href="getsflyteam.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Team</a>
-        <a href="contactgetsfly.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Contact</a>
-        <a href="#contact" class="bg-[#e83528] text-white px-6 py-3 rounded-full font-medium hover:bg-[#7c3aed] transition text-center">
-            Let's Build Your Brand 🚀
-        </a>
-    </div>
+      <!-- Mobile Menu -->
+<div id="mobileMenu" class="hidden md:hidden bg-white w-full px-4">
+  <div class="flex flex-col space-y-4 py-4">
+    <a href="index.html" class="py-2">Home</a>
+    <a href="services.html" class="py-2">Services</a>
+    <a href="getsflyteam.html" class="py-2">Team</a>
+    <a href="contactgetsfly.html" class="py-2">Contact</a>
+    <a href="#contact" class="bg-[#e83528] text-white px-6 py-3 rounded-full text-center">
+      Let's Build Your Brand 🚀
+    </a>
+  </div>
 </div>
 
-<!-- Update your JavaScript at the bottom of the body -->
 <script>
   const mobileMenuButton = document.getElementById('mobileMenuButton');
   const mobileMenu = document.getElementById('mobileMenu');
 
-  // Toggle menu
-  mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Close menu when clicking a link
-  const mobileLinks = mobileMenu.querySelectorAll('a');
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
+  if (mobileMenuButton && mobileMenu) {
+    // Toggle hidden class
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
-  });
+
+    // Close when clicking a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  }
 </script>
 
     </nav>
@@ -493,6 +494,7 @@
 </body>
 
 </html>
+
 
 
 
