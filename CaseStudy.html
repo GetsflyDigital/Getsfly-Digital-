@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies - GetsFly Digital Marketing Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0077FF;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0077FF;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0077FF;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: #0077FF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 119, 255, 0.3);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #0077FF;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu .nav-links {
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .mobile-menu .nav-links a {
+            font-size: 18px;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ffffff 0%, #e6f3ff 100%);
+            padding: 80px 5% 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(0, 119, 255, 0.05) 50%, transparent 70%);
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                transform: translateX(-100%);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            from {
+                transform: translateY(30px);
+            }
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            color: #0077FF;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        /* Case Study Section */
+        .case-study {
+            padding: 60px 5%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .case-study.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .case-study:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .case-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .case-container.reverse {
+            direction: rtl;
+        }
+
+        .case-container.reverse>* {
+            direction: ltr;
+        }
+
+        .case-image {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .case-image:hover {
+            transform: scale(1.03);
+        }
+
+        .case-content h3 {
+            color: #0077FF;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .case-content h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .case-content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #0077FF;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 119, 255, 0.2);
+        }
+
+        .metric-card h4 {
+            font-size: 24px;
+            color: #0077FF;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .metric-card p {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #0077FF 0%, #0055cc 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .case-cta {
+            display: inline-block;
+            background: #0077FF;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .case-cta:hover {
+            background: #0055cc;
+            transform: translateX(5px);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 60px 5%;
+            background: white;
+        }
+
+        .gallery h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #0077FF;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 250px;
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 119, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+            animation: paintSplash 0.8s ease;
+        }
+
+        @keyframes paintSplash {
+            0% {
+                transform: scale(0) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.5) rotate(180deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        .gallery-item:hover {
+            border-color: #0077FF;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 119, 255, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e6f3ff 100%);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #0077FF;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 119, 255, 0.2);
+        }
+
+        .testimonial-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .testimonial-card h4 {
+            color: #0077FF;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Trusted By */
+        .trusted {
+            padding: 60px 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .trusted h2 {
+            font-size: 32px;
+            color: #0077FF;
+            margin-bottom: 15px;
+        }
+
+        .trusted p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .client-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f3f3f3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .client-logo.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .client-logo:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .client-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #0077FF 0%, #0055cc 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            font-size: 16px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .submit-btn {
+            background: white;
+            color: #0077FF;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            padding: 30px 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            color: #0077FF;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .hero {
+                padding: 100px 5% 80px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .case-study {
+                padding: 80px 5%;
+            }
+
+            .case-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+
+            .case-content h2 {
+                font-size: 32px;
+            }
+
+            .case-content p {
+                font-size: 17px;
+            }
+
+            .gallery {
+                padding: 80px 5%;
+            }
+
+            .gallery h2 {
+                font-size: 42px;
+                margin-bottom: 60px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 30px;
+            }
+
+            .gallery-item {
+                height: 300px;
+            }
+
+            .testimonials {
+                padding: 80px 5%;
+            }
+
+            .testimonials h2 {
+                font-size: 42px;
+                margin-bottom: 60px;
+            }
+
+            .testimonial-container {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+
+            .testimonial-card {
+                padding: 30px;
+            }
+
+            .trusted {
+                padding: 80px 5%;
+            }
+
+            .trusted h2 {
+                font-size: 42px;
+            }
+
+            .trusted p {
+                font-size: 18px;
+                margin-bottom: 50px;
+            }
+
+            .client-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .contact {
+                padding: 80px 5%;
+            }
+
+            .contact h2 {
+                font-size: 42px;
+            }
+
+            .contact p {
+                font-size: 18px;
+                margin-bottom: 50px;
+            }
+
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">GetsFly</div>
+        <div class="nav-links">
+            <a href="Index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="CaseStudy.html">Case Studies</a>
+            <a href="Contactus.html">Contact</a>
+            <a href="Contactus.html" class="cta-button">Book a Free Call Now</a>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">×</button>
+        <div class="nav-links">
+            <a href="Index.html">Home</a>
+            <a href="Services.html">Services</a>
+            <a href="CaseStudy.html">Case Studies</a>
+            <a href="Contactus.html">Contact</a>
+            <a href="Contactus.html" class="cta-button">Book a Free Call Now</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Case Studies & Real Results</h1>
+            <p>See how GetsFly helps brands, creators, and businesses grow through creative and strategic digital
+                marketing.</p>
+            <a href="contactus.html" class="cta-button">Book a Free Call Now</a>
+        </div>
+    </section>
+
+    <!-- Case Study 1 -->
+    <section class="case-study" id="case-studies">
+        <div class="case-container">
+            <div>
+                <img src="https://i.postimg.cc/rsbXQvTL/0077FF-1.png" alt="Tactical Chess Knight" class="case-image">
+            </div>
+            <div class="case-content">
+                <h3>Content Creation & YouTube Growth</h3>
+                <h2>Tactical Chess Knight</h2>
+                <p>GetsFly created and optimized engaging short-form chess content for the Tactical Chess Knight
+                    channel, resulting in massive audience growth and consistent reach.</p>
+
+                <div class="metrics">
+                    <div class="metric-card">
+                        <h4>20K+</h4>
+                        <p>Views on Single Short</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>16K</h4>
+                        <p>Related Upload Views</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>7K+</h4>
+                        <p>Additional Reach</p>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    Strong content performance through editing precision, captions, and thumbnail optimization.
+                </div>
+
+                <a href="#contact" class="case-cta">Start Your Content Growth →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study 2 -->
+    <section class="case-study">
+        <div class="case-container reverse">
+            <div>
+                <img src="https://i.postimg.cc/ZngtV1mt/0077FF-3.png" alt="XploreWithDev" class="case-image">
+            </div>
+            <div class="case-content">
+                <h3>Instagram Reels & Social Growth</h3>
+                <h2>ExploreWithDev</h2>
+                <p>GetsFly helped ExploreWithDev achieve strong Instagram reach through consistent short-form video
+                    strategy, content design, and caption optimization.</p>
+
+                <div class="metrics">
+                    <div class="metric-card">
+                        <h4>12.3K</h4>
+                        <p>Total Views</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>8K+</h4>
+                        <p>Accounts Reached</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>96</h4>
+                        <p>Interactions</p>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    Boosted visibility and engagement organically with a data-backed content calendar.
+                </div>
+
+                <a href="#contact" class="case-cta">Start Your Content Growth →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study 3 -->
+    <section class="case-study">
+        <div class="case-container">
+            <div>
+                <img src="https://i.postimg.cc/PJcs2BHn/0077FF.png" alt="RandomDev" class="case-image">
+            </div>
+            <div class="case-content">
+                <h3>YouTube Shorts Growth</h3>
+                <h2>RandomDev Channel</h2>
+                <p>GetsFly optimized short-form chess videos for RandomDev, generating steady growth and discoverability
+                    across YouTube Shorts and Instagram Reels.</p>
+
+                <div class="metrics">
+                    <div class="metric-card">
+                        <h4>3.5K+</h4>
+                        <p>YouTube Shorts Views</p>
+                    </div>
+                    <div class="metric-card">
+                        <h4>4K</h4>
+                        <p>Instagram Reels Views</p>
+                    </div>
+                </div>
+
+                <div class="result-box">
+                    Content consistently reaching Explore feeds and trending sections.
+                </div>
+
+                <a href="#contact" class="case-cta">Start Your Content Growth →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery">
+        <h2>Case Studies Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/D0m3Q797/0077FF-4.png" alt="Case Study 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/fW1n6tpF/0077FF.jpg" alt="Case Study 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/59DdZYDc/0077FF-1.jpg" alt="Case Study 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.postimg.cc/668xjLjz/0077FF-5.png" alt="Case Study 4">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <p>"They are the best 💯💯"</p>
+                <h4>— AVIJIT GURHA</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"I took a service form GetsFly Digital and the result was awesome that made me a certificate i
+                    demanded and they created better then my actual expectations.
+                    Give it a try they are affordable and they got some skills that will scale ur business."</p>
+                <h4>— Ankush Khadotra</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"very good! certificate design and getsfly digital"</p>
+                <h4>— luka khvedelidze</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted By -->
+    <section class="trusted">
+        <h2>Trusted By</h2>
+        <p>We've worked with growing brands and creators across industries Ongoing Clients.</p>
+
+        <div class="logo-container">
+            <div class="client-logo">
+                <img src="https://i.postimg.cc/CLRHXdkR/541162866-17847500388553669-2417168690118133534-n.jpg"
+                    alt="Client Logo 1">
+            </div>
+            <div class="client-logo">
+                <img src="https://i.postimg.cc/sDWsT96F/IMG-20251103-WA0001.jpg" alt="Client Logo 2">
+            </div>
+            <div class="client-logo">
+                <img src="https://yt3.googleusercontent.com/ckhSoRhReJDTUX7nmtCmF__mJi3H4H5DaQNaGbHZ5CeK_rQ8WYvNeN17TJCZP3ZTyvRSucK0nLc=s160-c-k-c0x00ffffff-no-rj"
+                    alt="Client Logo 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Ready to Grow Your Business?</h2>
+        <p>Book a free strategy call with our experts today!</p>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="service">Service Interested In</label>
+                <select id="service" required>
+                    <option value="">Select a service</option>
+                    <option value="Social Media Marketing">Social Media Marketing</option>
+                    <option value="Content Creation">Content Creation</option>
+                    <option value="YouTube Growth">YouTube Growth</option>
+                    <option value="Instagram Growth">Instagram Growth</option>
+                    <option value="Digital Strategy">Digital Strategy</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn">Book Free Call Now</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div>© 2025 GetsFly Digital Marketing Agency</div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/GetsFlyDigital" aria-label="Facebook"><i
+                    class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/getsflydigital/" aria-label="Instagram"><i
+                    class="fab fa-instagram"></i></a>
+            <a href="www.youtube.com/@GetsFlyDigital" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.case-study, .gallery-item, .testimonial-card, .client-logo').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+
+            if (!name || !phone || !service) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const message = `Hi GetsFly Team, I'm ${name}. I'm interested in your ${service} services. Please contact me at ${phone}.`;
+            const whatsappUrl = `https://wa.me/919940590590?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
