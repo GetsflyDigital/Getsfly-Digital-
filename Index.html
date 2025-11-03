@@ -4,11 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetsFly Digital | Digital Marketing Agency in Chennai</title>
+
     <meta name="description"
-        content="GetsFly Digital Marketing Agency - Helping small businesses, startups, and content creators grow online with powerful digital strategies.">
-    <title>GetsFly Digital Marketing Agency | Grow Your Brand Online</title>
+        content="GetsFly Digital, founded by M.C Deva, is a leading digital marketing agency in Chennai specializing in video editing, social media management, branding, and content creation to help businesses and creators grow online.">
+
+    <meta name="keywords"
+        content="M.C Deva, GetsFly Digital, Digital Marketing Agency Chennai, Best digital marketing agency in tamilnadu, Social Media Management Chennai, Video Editing Chennai, Branding Chennai, Content Creation Chennai, YouTube Video Editing, Instagram Marketing, Best Digital marketing agency in chennai, Logo Design, Online Ad Campaigns, Creative Marketing Agency, Startup Branding Services, Influencer Marketing">
+
+    <meta name="author" content="M.C Deva, GetsFly Digital">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://getsfly.in">
+
+    <meta property="og:title" content="GetsFly Digital | Digital Marketing Agency in Chennai">
+    <meta property="og:description"
+        content="GetsFly Digital offers professional digital marketing, video editing, social media management, content creation, and branding services for businesses and creators worldwide.">
+    <meta property="og:url" content="https://getsfly.in">
+    <meta property="og:image" content="https://getsfly.in/images/og-image.jpg">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="GetsFly Digital | Digital Marketing Agency in Chennai">
+    <meta name="twitter:description"
+        content="Partner with GetsFly Digital for expert digital marketing, video editing, social media management, branding, and content creation services.">
+    <meta name="twitter:image" content="https://getsfly.in/images/twitter-image.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
         * {
             margin: 0;
@@ -27,68 +52,110 @@
             scroll-behavior: smooth;
         }
 
-        /* Loading Screen */
+        /* Loading Screen - Space Theme */
         #loading-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
+            inset: 0;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #001233 0%, #000814 100%);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         #loading-screen.hidden {
             opacity: 0;
+            visibility: hidden;
             pointer-events: none;
         }
 
-        .growth-animation {
-            width: 200px;
-            height: 200px;
+        /* Star layers for parallax twinkling */
+        .stars,
+        .stars2,
+        .stars3 {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-repeat: repeat;
+            background-size: contain;
+            top: -50%;
+            left: -50%;
+        }
+
+        .stars {
+            background-image: radial-gradient(2px 2px at 20px 20px, #ffffff 90%, transparent);
+            animation: moveStars 60s linear infinite;
+            opacity: 0.3;
+        }
+
+        .stars2 {
+            background-image: radial-gradient(1px 1px at 10px 10px, #cce7ff 90%, transparent);
+            animation: moveStars 90s linear infinite reverse;
+            opacity: 0.2;
+        }
+
+        .stars3 {
+            background-image: radial-gradient(2px 2px at 40px 40px, #66aaff 90%, transparent);
+            animation: moveStars 120s linear infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            to {
+                transform: translate(50px, 50px) rotate(360deg);
+            }
+        }
+
+        /* Loader Area */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
         }
 
-        .growth-bar {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px;
-            height: 0;
-            background: linear-gradient(to top, #2563eb, #60a5fa);
-            border-radius: 4px;
-            animation: grow 2s ease-out forwards;
+        .rotator {
+            width: 260px;
+            height: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rotate360 3s linear infinite;
         }
 
-        @keyframes grow {
+        .loading-logo {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            animation: pulseGlow 1.8s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 25px rgba(0, 140, 255, 0.9));
+        }
+
+        @keyframes rotate360 {
+            from {
+                transform: rotate(0deg);
+            }
+
             to {
-                height: 180px;
+                transform: rotate(360deg);
             }
         }
 
-        .loading-text {
-            margin-top: 30px;
-            font-size: 18px;
-            color: #2563eb;
-            font-weight: 600;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 0.6;
+        @keyframes pulseGlow {
+            from {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(0, 140, 255, 0.6));
             }
 
-            50% {
-                opacity: 1;
+            to {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 45px rgba(0, 180, 255, 1));
             }
         }
 
@@ -808,122 +875,33 @@
                 font-size: 14px;
             }
         }
-
-        /* ===== Space Background ===== */
-        #loading-screen {
-            position: fixed;
-            inset: 0;
-            overflow: hidden;
-            background: radial-gradient(circle at 50% 50%, #001233 0%, #000814 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-
-        /* Star layers for parallax twinkling */
-        .stars,
-        .stars2,
-        .stars3 {
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background-repeat: repeat;
-            background-size: contain;
-            top: -50%;
-            left: -50%;
-        }
-
-        .stars {
-            background-image: radial-gradient(2px 2px at 20px 20px, #ffffff 90%, transparent);
-            animation: moveStars 60s linear infinite;
-            opacity: 0.3;
-        }
-
-        .stars2 {
-            background-image: radial-gradient(1px 1px at 10px 10px, #cce7ff 90%, transparent);
-            animation: moveStars 90s linear infinite reverse;
-            opacity: 0.2;
-        }
-
-        .stars3 {
-            background-image: radial-gradient(2px 2px at 40px 40px, #66aaff 90%, transparent);
-            animation: moveStars 120s linear infinite;
-            opacity: 0.15;
-        }
-
-        @keyframes moveStars {
-            from {
-                transform: translate(0, 0) rotate(0deg);
-            }
-
-            to {
-                transform: translate(50px, 50px) rotate(360deg);
-            }
-        }
-
-        /* ===== Loader Area ===== */
-        .loader {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Rotator handles continuous spin */
-        .rotator {
-            width: 260px;
-            height: 260px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: rotate360 3s linear infinite;
-        }
-
-        /* PNG image glow & pulse */
-        .loading-logo {
-            width: 220px;
-            height: 220px;
-            object-fit: contain;
-            animation: pulseGlow 1.8s ease-in-out infinite alternate;
-            filter: drop-shadow(0 0 25px rgba(0, 140, 255, 0.9));
-        }
-
-        /* Rotate animation */
-        @keyframes rotate360 {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Glowing pulse */
-        @keyframes pulseGlow {
-            from {
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px rgba(0, 140, 255, 0.6));
-            }
-
-            to {
-                transform: scale(1.08);
-                filter: drop-shadow(0 0 45px rgba(0, 180, 255, 1));
-            }
-        }
-
-        /* Fade-out transition */
-        .fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
     </style>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "GetsFly Digital",
+            "image": "https://getsfly.in/images/logo.png",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Medavakkam , Chennai",
+                "addressLocality": "Chennai",
+                "addressRegion": "TN",
+                "postalCode": "600100",
+                "addressCountry": "IN"
+            },
+            "telephone": "+91-9940590590",
+            "openingHours": ["Mo-Su 10:00-21:00"],
+            "sameAs": [
+                "https://www.instagram.com/getsflydigital",
+                "www.linkedin.com/in/Getsflydigital"
+            ]
+        }
+    </script>
 </head>
 
 <body>
-    <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="stars"></div>
         <div class="stars2"></div>
@@ -931,83 +909,22 @@
 
         <div class="loader">
             <div class="rotator">
-                <img src="https://www.townscholar.com/_next/static/media/green-star.c4e9b380.png" alt="Loading..."
+                <img src="https://www.townscholar.com/_next/static/media/green-star.c4e9b380.png" alt="Loading GetsFly Digital"
                     class="loading-logo" />
             </div>
         </div>
     </div>
 
-    <!-- Page Title -->
-    <title>GetsFly Digital | Digital Marketing Agency in Chennai</title>
-
-    <!-- Meta Description -->
-    <meta name="description"
-        content="GetsFly Digital, founded by M.C Deva, is a leading digital marketing agency in Chennai specializing in video editing, social media management, branding, and content creation to help businesses and creators grow online.">
-
-    <!-- Meta Keywords -->
-    <meta name="keywords"
-        content="M.C Deva, GetsFly Digital, Digital Marketing Agency Chennai, Best digital marketing agency in tamilnadu, Social Media Management Chennai, Video Editing Chennai, Branding Chennai, Content Creation Chennai, YouTube Video Editing, Instagram Marketing, Best Digital marketing agency in chennai, Logo Design, Online Ad Campaigns, Creative Marketing Agency, Startup Branding Services, Influencer Marketing">
-
-    <!-- Author -->
-    <meta name="author" content="M.C Deva, GetsFly Digital">
-
-    <!-- Robots -->
-    <meta name="robots" content="index, follow">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://getsfly.in">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="GetsFly Digital | Digital Marketing Agency in Chennai">
-    <meta property="og:description"
-        content="GetsFly Digital offers professional digital marketing, video editing, social media management, content creation, and branding services for businesses and creators worldwide.">
-    <meta property="og:url" content="https://getsfly.in">
-    <meta property="og:image" content="https://getsfly.in/images/og-image.jpg">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GetsFly Digital | Digital Marketing Agency in Chennai">
-    <meta name="twitter:description"
-        content="Partner with GetsFly Digital for expert digital marketing, video editing, social media management, branding, and content creation services.">
-    <meta name="twitter:image" content="https://getsfly.in/images/twitter-image.jpg">
-
-    <!-- Structured Data (LocalBusiness JSON-LD for SEO & Google Maps) -->
-    <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "GetsFly Digital",
-    "image": "https://getsfly.in/images/logo.png",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Medavakkam , Chennai",
-      "addressLocality": "Chennai",
-      "addressRegion": "TN",
-      "postalCode": "600100",
-      "addressCountry": "IN"
-    },
-    "telephone": "+91-9940590590",
-    "openingHours": ["Mo-Su 10:00-21:00"],
-    "sameAs": [
-      "https://www.instagram.com/getsflydigital",
-      "www.linkedin.com/in/Getsflydigital"
-    ]
-  }
-  </script>
-
-    <!-- Navigation -->
     <nav id="navbar">
         <div class="logo">GetsFly</div>
         <ul class="nav-links">
-            <li><a href="Index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="Services.html">Services</a></li>
             <li><a href="CaseStudy.html">Case Studies</a></li>
             <li><a href="Contactus.html">Contact Us</a></li>
         </ul>
         <a href="Contactus.html" class="cta-nav">Get a Free Consultation</a>
 
-        <!-- Mobile Menu Button -->
         <div class="mobile-menu-btn">
             <span></span>
             <span></span>
@@ -1015,7 +932,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Navigation -->
     <div class="overlay"></div>
     <div class="mobile-nav">
         <ul class="mobile-nav-links">
@@ -1027,9 +943,7 @@
         <a href="Contactus.html" class="mobile-cta">Get a Free Consultation</a>
     </div>
 
-    <!-- Main Content -->
-    <div id="main-content">
-        <!-- Hero Section -->
+    <div id="main-content" style="display: none;">
         <section id="home" class="hero">
             <div class="floating-shape shape1"></div>
             <div class="floating-shape shape2"></div>
@@ -1045,7 +959,6 @@
             <div class="scroll-indicator"></div>
         </section>
 
-        <!-- Stats Section -->
         <section class="stats">
             <div class="stats-container">
                 <div class="stat-item" data-target="100">
@@ -1064,7 +977,6 @@
             <p class="stats-subtext">Powered by creativity, driven by results.</p>
         </section>
 
-        <!-- Services Section -->
         <section id="services" class="services">
             <h2 class="section-title">Our Expertise</h2>
             <div class="services-grid">
@@ -1121,7 +1033,6 @@
             </div>
         </section>
 
-        <!-- Testimonials Section -->
         <section id="testimonials" class="testimonials">
             <h2 class="section-title">What Our Clients Say</h2>
             <div class="testimonials-container">
@@ -1145,14 +1056,12 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section id="contact" class="cta-section">
             <h2>Ready to Grow Your Brand?</h2>
             <p>Partner with GetsFly and let's take your business to new heights.</p>
             <a href="Contactus.html" class="cta-button">Contact GetsFly Now</a>
         </section>
 
-        <!-- Footer -->
         <footer>
             <div class="footer-content">
                 <div class="copyright">
@@ -1170,12 +1079,15 @@
     </div>
 
     <script>
+        // Set main content to hidden initially via JS to prevent content flash before loader
+        document.getElementById('main-content').style.display = 'none';
+
         // Loading Screen
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loading-screen').classList.add('hidden');
                 document.getElementById('main-content').style.display = 'block';
-            }, 2200);
+            }, 2200); // Wait 2.2 seconds for the loader animation
         });
 
         // Navbar Scroll Effect
@@ -1197,6 +1109,7 @@
             mobileMenuBtn.classList.toggle('active');
             mobileNav.classList.toggle('active');
             overlay.classList.toggle('active');
+            // Prevent body scrolling when mobile menu is open
             document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
         });
 
@@ -1225,7 +1138,8 @@
             const timer = setInterval(() => {
                 start += increment;
                 if (start >= target) {
-                    element.textContent = target + '+';
+                    // Ensures the final value is exactly the target plus the '+' sign
+                    element.textContent = target + '+'; 
                     clearInterval(timer);
                 } else {
                     element.textContent = Math.floor(start);
@@ -1244,7 +1158,9 @@
                     statsObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
+        }, {
+            threshold: 0.5
+        });
 
         document.querySelectorAll('.stat-item').forEach(item => {
             statsObserver.observe(item);
@@ -1260,7 +1176,9 @@
                     testimonialObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.2 });
+        }, {
+            threshold: 0.2
+        });
 
         document.querySelectorAll('.testimonial-card').forEach(card => {
             testimonialObserver.observe(card);
