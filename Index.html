@@ -758,7 +758,7 @@
         .testimonial-card {
             padding: 30px 20px;
         }
-        }
+    
 
         @media (max-width: 480px) {
             .hero h1 {
@@ -875,6 +875,49 @@
   </script>
 
     <style>
+        .mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.mobile-nav-links li {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.mobile-nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+    padding: 10px 0;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links a:hover {
+    color: #2563eb;
+}
+
+.mobile-cta {
+    margin-top: auto;
+    background: #2563eb;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-cta:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
         /* ===== Space Background ===== */
         #loading-screen {
             position: fixed;
@@ -1102,17 +1145,17 @@
             <span></span>
         </div>
     </nav>
-
-    <!-- Mobile Navigation -->
-    <div class="overlay"></div>
-    <div class="mobile-nav">
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="case-study.html">Case Studies</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-        <a href="contact.html" class="mobile-cta">Get a Free Consultation</a>
+<!-- Mobile Navigation -->
+<div class="overlay"></div>
+<div class="mobile-nav">
+    <ul class="mobile-nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="case-study.html">Case Studies</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <a href="contact.html" class="mobile-cta">Get a Free Consultation</a>
+</div>
     </div>
 
     <!-- Hero Section -->
@@ -1275,35 +1318,47 @@
                 navbar.classList.remove('scrolled');
             }
         });
+// Mobile Menu Toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileNav = document.querySelector('.mobile-nav');
+const overlay = document.querySelector('.overlay');
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const mobileNav = document.querySelector('.mobile-nav');
-        const overlay = document.querySelector('.overlay');
+// Debug logging
+console.log('Mobile menu elements:', {
+    mobileMenuBtn,
+    mobileNav,
+    overlay
+});
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenuBtn.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            overlay.classList.toggle('active');
-            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
-        });
+mobileMenuBtn.addEventListener('click', () => {
+    console.log('Menu button clicked');
+    mobileMenuBtn.classList.toggle('active');
+    mobileNav.classList.toggle('active');
+    overlay.classList.toggle('active');
+    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+});
 
-        overlay.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            mobileNav.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+overlay.addEventListener('click', () => {
+    console.log('Overlay clicked');
+    mobileMenuBtn.classList.remove('active');
+    mobileNav.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-nav-links a, .mobile-cta').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenuBtn.classList.remove('active');
-                mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
+// Close mobile menu when clicking on a link
+const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-cta');
+console.log('Mobile links found:', mobileLinks.length);
+
+mobileLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        console.log('Mobile link clicked:', e.target.textContent);
+        mobileMenuBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+});
 
         // Animated Counter for Stats
         function animateCounter(element, target, duration = 2000) {
