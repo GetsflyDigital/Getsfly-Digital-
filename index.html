@@ -1,766 +1,1213 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GetsFly Digital | Creative Digital Agency</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <meta name="description"
+        content="GetsFly Digital Marketing Agency - Helping small businesses, startups, and content creators grow online with powerful digital strategies.">
+    <title>GetsFly Digital Marketing Agency | Grow Your Brand Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            background: #fff;
+            color: #333;
             overflow-x: hidden;
         }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #1f1f1f 0%, #e83528 100%);
+
+        html {
+            scroll-behavior: smooth;
         }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .team-card:hover .team-front {
-            transform: rotateY(180deg);
-        }
-        
-        .team-card:hover .team-back {
-            transform: rotateY(0deg);
-        }
-        
-        .team-front, .team-back {
-            backface-visibility: hidden;
-            transition: transform 0.6s;
-        }
-        
-        .team-back {
-            transform: rotateY(180deg);
-        }
-        
-        .glitch {
-            position: relative;
-        }
-        
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-        }
-        
-        .glitch::before {
-            color: #7c3aed;
-            animation: glitch-effect 3s infinite;
-        }
-        
-        .glitch::after {
-            color: #e83528;
-            animation: glitch-effect 2s infinite reverse;
-        }
-        
-        @keyframes glitch-effect {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
-        }
-        
-        .scroll-top {
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-15px);}
-            60% {transform: translateY(-7px);}
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
         }
 
-        /* Mobile menu styles */
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        
-        .mobile-menu.open {
-            max-height: 500px;
+        #loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        /* Hero image adjustments */
-        .hero-images {
+        .growth-animation {
+            width: 200px;
+            height: 200px;
             position: relative;
-            height: 300px;
-            margin-top: 2rem;
         }
-        
-        @media (min-width: 768px) {
-            .hero-images {
-                height: auto;
-                margin-top: 0;
+
+        .growth-bar {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 0;
+            background: linear-gradient(to top, #2563eb, #60a5fa);
+            border-radius: 4px;
+            animation: grow 2s ease-out forwards;
+        }
+
+        @keyframes grow {
+            to {
+                height: 180px;
             }
         }
 
-        /* Larger tap targets for mobile */
-        a, button, input, .service-card {
-            touch-action: manipulation;
+        .loading-text {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #2563eb;
+            font-weight: 600;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.6;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 5%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2563eb;
+            z-index: 1001;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: #2563eb;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .cta-nav:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #333;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: #fff;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 80px 30px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links li {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .mobile-cta {
+            margin-top: auto;
+            background: #2563eb;
+            color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-cta:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 5% 50px;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .shape3 {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: #2563eb;
+            color: #fff;
+            padding: 18px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        .cta-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+        }
+
+        .trust-text {
+            margin-top: 30px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::before {
+            content: '↓';
+            font-size: 30px;
+            color: #2563eb;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-15px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-8px);
+            }
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 5%;
+            background: #fff;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .stat-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #2563eb;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .stats-subtext {
+            text-align: center;
+            margin-top: 40px;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 5%;
+            background: #f9fafb;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 60px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            background: #eff6ff;
+            border-color: #2563eb;
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            color: #1f2937;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 5%;
+            background: #f3f4f6;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: #4b5563;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #2563eb;
+            padding: 18px 45px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 5%;
+            background: #fff;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: #6b7280;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #6b7280;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #2563eb;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .cta-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .cta-primary,
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .floating-shape {
+                display: none;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .cta-section p {
+                font-size: 18px;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+
+            .stat-label {
+                font-size: 16px;
+            }
+
+            .cta-section h2 {
+                font-size: 26px;
+            }
+
+            .cta-section p {
+                font-size: 16px;
+            }
+
+            .service-card h3 {
+                font-size: 20px;
+            }
+
+            .testimonial-text {
+                font-size: 14px;
+            }
+        }
+
+        /* ===== Space Background ===== */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, #001233 0%, #000814 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        /* Star layers for parallax twinkling */
+        .stars,
+        .stars2,
+        .stars3 {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-repeat: repeat;
+            background-size: contain;
+            top: -50%;
+            left: -50%;
+        }
+
+        .stars {
+            background-image: radial-gradient(2px 2px at 20px 20px, #ffffff 90%, transparent);
+            animation: moveStars 60s linear infinite;
+            opacity: 0.3;
+        }
+
+        .stars2 {
+            background-image: radial-gradient(1px 1px at 10px 10px, #cce7ff 90%, transparent);
+            animation: moveStars 90s linear infinite reverse;
+            opacity: 0.2;
+        }
+
+        .stars3 {
+            background-image: radial-gradient(2px 2px at 40px 40px, #66aaff 90%, transparent);
+            animation: moveStars 120s linear infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes moveStars {
+            from {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            to {
+                transform: translate(50px, 50px) rotate(360deg);
+            }
+        }
+
+        /* ===== Loader Area ===== */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Rotator handles continuous spin */
+        .rotator {
+            width: 260px;
+            height: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: rotate360 3s linear infinite;
+        }
+
+        /* PNG image glow & pulse */
+        .loading-logo {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            animation: pulseGlow 1.8s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 25px rgba(0, 140, 255, 0.9));
+        }
+
+        /* Rotate animation */
+        @keyframes rotate360 {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Glowing pulse */
+        @keyframes pulseGlow {
+            from {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(0, 140, 255, 0.6));
+            }
+
+            to {
+                transform: scale(1.08);
+                filter: drop-shadow(0 0 45px rgba(0, 180, 255, 1));
+            }
+        }
+
+        /* Fade-out transition */
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
         }
     </style>
 </head>
-<body class="bg-[#f2f2f2] text-[#1f1f1f]">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="#" class="text-2xl font-bold text-[#1f1f1f]">
-                    <span class="text-[#e83528]">Gets</span>Fly Digital
-                </a>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="stars"></div>
+        <div class="stars2"></div>
+        <div class="stars3"></div>
+
+        <div class="loader">
+            <div class="rotator">
+                <img src="https://www.townscholar.com/_next/static/media/green-star.c4e9b380.png" alt="Loading..."
+                    class="loading-logo" />
             </div>
-            
-            <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
-                <a href="AgencyHome.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Home</a>
-                <a href="services.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Services</a>
-                <a href="getsflyteam.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Team</a>
-                <a href="contactgetsfly.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Contact</a>
-                <a href="#contact" class="bg-[#e83528] text-white px-4 py-2 lg:px-6 lg:py-2 rounded-full font-medium hover:bg-[#7c3aed] transition whitespace-nowrap">
-                    Let's Build Your Brand 🚀
-                </a>
-            </div>
-            
-            <button id="mobileMenuButton" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
         </div>
-
- <!-- In your head section, update the mobile menu styles -->
-<style>
-    /* Mobile menu styles - update these */
-    .mobile-menu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-        display: none; /* Add this */
-    }
-    
-    .mobile-menu.open {
-        display: block; /* Add this */
-        max-height: 500px;
-    }
-</style>
-
-<!-- In your nav section, update the mobile menu HTML -->
-<div id="mobileMenu" class="mobile-menu md:hidden bg-white w-full px-4">
-    <div class="flex flex-col space-y-4 py-4">
-        <a href="index.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Home</a>
-        <a href="services.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Services</a>
-        <a href="getsflyteam.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Team</a>
-        <a href="contactgetsfly.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Contact</a>
-        <a href="#contact" class="bg-[#e83528] text-white px-6 py-3 rounded-full font-medium hover:bg-[#7c3aed] transition text-center">
-            Let's Build Your Brand 🚀
-        </a>
     </div>
-</div>
 
-<!-- Update your JavaScript at the bottom of the body -->
-<script>
-    // Mobile menu toggle functionality
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">GetsFly</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="casestudy.html">Case Studies</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+        <a href="contactus.html" class="cta-nav">Get a Free Consultation</a>
 
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-    });
-
-    // Close menu when clicking on a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
-    });
-</script>
-</div>
-
-<script>
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    menuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-</script>
-                </a>
-            </div>
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6">
-        <div class="container mx-auto flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-8 md:mb-0">
-                <h1 class="glitch text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6" data-text="Create. Elevate. Dominate.">
-                    Create. Elevate. Dominate.
-                </h1>
-                <p class="text-lg md:text-xl mb-6 md:mb-8">
-                    Designs that actually land. Content that actually connects. GetsFly builds what brands need to stand out.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4">
-                    <a href="#contact" class="bg-[#e83528] hover:bg-[#7c3aed] text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-bold text-center transition">
-                        Start Your Project
-                    </a>
-                    <a href="#portfolio" class="bg-transparent hover:bg-white hover:text-[#1f1f1f] border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-bold text-center transition">
-                        See Our Work
-                    </a>
-                </div>
-                <div class="mt-8 md:mt-12">
-                    <div class="flex items-center">
-                        <div class="text-3xl md:text-4xl font-bold mr-4" id="clientCount">0</div>
-                        <div class="text-base md:text-lg">
-                            <div>creators, brands & startups</div>
-                            <div class="relative inline-block font-bold text-white tracking-tight text-sm md:text-base lg:text-lg">
-                                <span class="absolute left-0 top-0 text-[#7c3aed] -z-10 blur-sm">trusting our work</span>
-                                trusting our work
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-16 md:py-20 px-4 sm:px-6 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Everything You Need to Build & Scale Online</h2>
-            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-                Comprehensive digital solutions tailored to your brand's unique needs.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
-                    <div class="text-[#7c3aed] text-4xl mb-4">
-                        <i class="fas fa-hashtag"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2">Social Media Management</h3>
-                    <p class="text-[#666] text-sm md:text-base">Strategic content creation and scheduling for maximum engagement.</p>
-                </div>
-                
-                <!-- Service Card 2 -->
-                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
-                    <div class="text-[#7c3aed] text-4xl mb-4">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2">Video Editing + Thumbnails</h3>
-                    <p class="text-[#666] text-sm md:text-base">Eye-catching visuals that stop the scroll and drive views.</p>
-                </div>
-                
-                <!-- Service Card 3 -->
-                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
-                    <div class="text-[#7c3aed] text-4xl mb-4">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2">Website Design & Development</h3>
-                    <p class="text-[#666] text-sm md:text-base">Custom sites that convert visitors into customers.</p>
-                </div>
-                
-                <!-- Service Card 4 -->
-                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
-                    <div class="text-[#7c3aed] text-4xl mb-4">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2">3D Modeling & Product Visualization</h3>
-                    <p class="text-[#666] text-sm md:text-base">Bring your products to life with stunning 3D renders.</p>
-                </div>
-                
-                <!-- Service Card 5 -->
-                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
-                    <div class="text-[#7c3aed] text-4xl mb-4">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2">Branding + Starter Packs</h3>
-                    <p class="text-[#666] text-sm md:text-base">Complete visual identity systems that tell your story.</p>
-                </div>
-                
-                <!-- Service Card 6 -->
-                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
-                    <div class="text-[#7c3aed] text-4xl mb-4">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-2">Ecommerce Setup & Ad Management</h3>
-                    <p class="text-[#666] text-sm md:text-base">Turn browsers into buyers with optimized shopping experiences.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section class="py-16 md:py-20 px-4 sm:px-6 bg-[#f2f2f2]">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Designs That Actually Land</h2>
-            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-                We don't just make it pretty. We make it click, save, share, and convert.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-                    <div class="text-[#e83528] text-4xl mb-4">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4">Speed That Matches Your Grind</h3>
-                    <p class="text-[#666] text-sm md:text-base mb-4">
-                        Quick edits, clean delivery. We move at your pace without sacrificing quality.
-                    </p>
-                    <div class="text-[#7c3aed] font-medium text-sm md:text-base">Always moving, always sharp</div>
-                </div>
-                
-                <!-- Feature 2 -->
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-                    <div class="text-[#e83528] text-4xl mb-4">
-                        <i class="fas fa-bullseye"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4">Designs That Actually Land</h3>
-                    <p class="text-[#666] text-sm md:text-base mb-4">
-                        Real strategy behind every graphic. Custom-crafted, never cookie-cutter.
-                    </p>
-                    <div class="text-[#7c3aed] font-medium text-sm md:text-base">Built to feel like your brand</div>
-                </div>
-                
-                <!-- Feature 3 -->
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-                    <div class="text-[#e83528] text-4xl mb-4">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <h3 class="text-xl md:text-2xl font-bold mb-4">Creative That Cuts Through Noise</h3>
-                    <p class="text-[#666] text-sm md:text-base mb-4">
-                        Visuals that vibe and work. Edits with flow, graphics with purpose.
-                    </p>
-                    <div class="text-[#7c3aed] font-medium text-sm md:text-base">Built for clicks, not dust</div>
-                </div>
-            </div>
-            
-            <div class="mt-12 md:mt-16 text-center">
-                <p class="text-lg md:text-xl font-medium italic">
-                    "We make brands move."
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-16 md:py-20 px-4 sm:px-6 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Work Speaks Volumes</h2>
-            <p class="text-lg md:text-xl text-center mb-8 md:mb-12 max-w-3xl mx-auto">
-                A selection of projects we're proud to have created.
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                <!-- Portfolio Item 1 -->
-                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
-                    <div class="relative group">
-                        <img src="https://i.postimg.cc/0jvLkTpH/Valo-thumbnail.png" 
-                             alt="Brand Identity Project" 
-                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
-                        <div class="absolute inset-0 bg-[#e83528] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <span class="text-white text-lg md:text-xl font-bold"> Thumbnail </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 2 -->
-                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
-                    <div class="relative group">
-                        <img src="https://i.postimg.cc/hPT1bJRx/0631-D2-D7-3-F4-E-41-B8-B093-6942-F008-F8-F3.png" 
-                             alt="Website Design" 
-                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
-                        <div class="absolute inset-0 bg-[#7c3aed] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <span class="text-white text-lg md:text-xl font-bold">Website Design</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 3 -->
-                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
-                    <div class="relative group">
-                        <img src="https://i.postimg.cc/sDm90k1D/theospc-biz-thumbnail.png" 
-                             alt="Social Media Design" 
-                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
-                        <div class="absolute inset-0 bg-[#1f1f1f] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <span class="text-white text-lg md:text-xl font-bold">Social Media Design</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 4 -->
-                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
-                    <div class="relative group">
-                        <img src="https://i.postimg.cc/3RLYqJMF/image.png" 
-                             alt="Product Visualization" 
-                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
-                        <div class="absolute inset-0 bg-[#e83528] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <span class="text-white text-lg md:text-xl font-bold">3D Product</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 5 -->
-                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
-                    <div class="relative group">
-                        <img src="https://media.gettyimages.com/id/1037595872/video/color-grading-a-video-in-editing-tutorial.jpg?s=640x640&k=20&c=XBJSrBsPm2lh934FM1n-wwkHu8DZ3m_45CtPS8fOSuA=" 
-                             alt="Video Production" 
-                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
-                        <div class="absolute inset-0 bg-[#7c3aed] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <span class="text-white text-lg md:text-xl font-bold">Video Editing</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Portfolio Item 6 -->
-                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
-                    <div class="relative group">
-                        <img src="https://www.creatopy.com/blog/wp-content/uploads/2023/04/The-Ultimate-Guide-to-YouTube-Advertising-How-To-Set-Up-Run-Effective-Ads.png" 
-                             alt="Ad Running" 
-                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
-                        <div class="absolute inset-0 bg-[#1f1f1f] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <span class="text-white text-lg md:text-xl font-bold">AD Running </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-16 md:py-20 px-4 sm:px-6 bg-[#f2f2f2]">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">What Our Clients Say</h2>
-            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-                Don't just take our word for it - here's what our clients have to say.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-                    <div class="text-[#7c3aed] text-3xl mb-4">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="text-[#666] text-sm md:text-base mb-4 md:mb-6 italic">
-                        "Nice Impressive 10/10."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#e83528] flex items-center justify-center text-white font-bold mr-3 md:mr-4">EIB</div>
-                        <div>
-                            <div class="font-bold text-sm md:text-base">EIB founder</div>
-                            <div class="text-[#666] text-xs md:text-sm">Elysian Interior & Builders</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-                    <div class="text-[#7c3aed] text-3xl mb-4">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="text-[#666] text-sm md:text-base mb-4 md:mb-6 italic">
-                        "i'm very satisified with the service for someone who is seems to be new they do very well on their job and super professional Getsfly digital"
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#1f1f1f] flex items-center justify-center text-white font-bold mr-3 md:mr-4">S.I</div>
-                        <div>
-                            <div class="font-bold text-sm md:text-base">Sujith.I</div>
-                            <div class="text-[#666] text-xs md:text-sm">CEO, Theos PC</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-                    <div class="text-[#7c3aed] text-3xl mb-4">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <p class="text-[#666] text-sm md:text-base mb-4 md:mb-6 italic">
-                        "Getsfly Digital is hardworking, kind, and always ready to help others. Their dedication and positive attitude make them a joy to be around."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#e83528] flex items-center justify-center text-white font-bold mr-3 md:mr-4">R</div>
-                        <div>
-                            <div class="font-bold text-sm md:text-base">Ravi</div>
-                            <div class="text-[#666] text-xs md:text-sm"> Rexify Founder</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="py-16 md:py-20 px-4 sm:px-6 bg-white">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Meet the Team</h2>
-            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
-                The creative minds behind GetsFly Digital.
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- Team Member 1 -->
-                <div class="team-card relative h-80 md:h-96">
-                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#e83528] mb-3 md:mb-4 overflow-hidden">
-                            <img src="https://i.postimg.cc/3JN2GCvR/charac-1-1.png" 
-                                 alt="Deva" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold">Deva</h3>
-                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Creative Director</p>
-                    </div>
-                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
-                            "Design isn't just what it looks like, it's how it works."
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Team Member 2 -->
-                <div class="team-card relative h-80 md:h-96">
-                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#7c3aed] mb-3 md:mb-4 overflow-hidden">
-                            <img src="https://i.postimg.cc/jjBR8T8m/charac-2-1.png" 
-                                 alt="Sujith" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold">Sujith</h3>
-                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Video Editing Expert</p>
-                    </div>
-                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
-                            "Every frame has purpose."
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Team Member 3 -->
-                <div class="team-card relative h-80 md:h-96">
-                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#e83528] mb-3 md:mb-4 overflow-hidden">
-                            <img src="https://i.postimg.cc/LsPqSYkD/image.png" 
-                                 alt="Marcus Chen" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold">Chidambaram</h3>
-                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Marketing and business strategist</p>
-                    </div>
-                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
-                            "Smart strategy fuels sustainable business growth."
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Team Member 4 -->
-                <div class="team-card relative h-80 md:h-96">
-                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#7c3aed] mb-3 md:mb-4 overflow-hidden">
-                            <img src="https://i.postimg.cc/fTdfHLpc/image.png" 
-                                 alt="Taylor Wright" 
-                                 class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-xl md:text-2xl font-bold">Yasar</h3>
-                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Content Management Lead</p>
-                    </div>
-                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
-                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
-                            "Organize content deliver value every time."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-20 px-4 sm:px-6 bg-[#1f1f1f] text-white">
-        <div class="container mx-auto">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Build Something 🔥</h2>
-                <p class="text-lg md:text-xl mb-8 md:mb-12">
-                    Whether you're launching or scaling, we're here to design the digital side of your brand.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left">
-                    <div>
-                        <label for="name" class="block mb-2 font-medium text-sm md:text-base">Your Name</label>
-                        <input type="text" id="name" class="w-full px-4 py-2 md:py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-sm md:text-base">
-                    </div>
-                    <div>
-                        <label for="email" class="block mb-2 font-medium text-sm md:text-base">Email Address</label>
-                        <input type="email" id="email" class="w-full px-4 py-2 md:py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-sm md:text-base">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label for="project" class="block mb-2 font-medium text-sm md:text-base">Project Type</label>
-                        <select id="project" class="w-full px-4 py-2 md:py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-sm md:text-base">
-                            <option value="">Select a service</option>
-                            <option value="Branding">Business Kit</option>
-                            <option value="Website Design">Website Developement</option>
-                            <option value="Social Media">Social Media Management</option>
-                            <option value="Video Production">Video Editing</option>
-                            <option value="Ecommerce">Graphic Designs</option>
-                            <option value="Other">Other</option>
-                        </select>
-                </div>
-                <div class="md:col-span-2">
-                    <label for="message" class="block mb-2 font-medium">Tell Us About Your Project</label>
-                    <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]"></textarea>
-                </div>
-                <div class="md:col-span-2 text-center">
-                    <button onclick="sendToWhatsApp()" class="bg-[#e83528] hover:bg-[#7c3aed] text-white px-8 py-3 rounded-full font-bold transition">
-                        Start a Conversation
-                    </button>
-                </div>
-            </div>
-        </div>
+    <!-- Mobile Navigation -->
+    <div class="overlay"></div>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="casestudy.html">Case Studies</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+        <a href="contactus.html" class="mobile-cta">Get a Free Consultation</a>
     </div>
-</section>
 
-<!-- WhatsApp Script -->
-<script>
-    function sendToWhatsApp() {
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const project = document.getElementById("project").value.trim();
-        const message = document.getElementById("message").value.trim();
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="floating-shape shape1"></div>
+            <div class="floating-shape shape2"></div>
+            <div class="floating-shape shape3"></div>
 
-        if (!name || !email || !project || !message) {
-            alert("Please fill all fields before sending.");
-            return;
-        }
+            <div class="hero-content">
+                <h1>Let's Get Your Brand to <span>Fly High</span> with GetsFly Digital Marketing</h1>
+                <p>We help Small Businesses, Startups, E-commerce Brands, and Content Creators grow online with powerful
+                    digital strategies.</p>
+                <a href="#contact" class="cta-primary">Get a Free Consultation</a>
+                <div class="trust-text">Trusted By Many Brands and Creator</div>
+            </div>
+            <div class="scroll-indicator"></div>
+        </section>
 
-        const fullMessage = `Hello! 👋\n\nName: ${name}\nEmail: ${email}\nService: ${project}\nMessage: ${message}`;
-        const encodedMessage = encodeURIComponent(fullMessage);
-        const whatsappURL = `https://wa.me/919940590590?text=${encodedMessage}`;
-
-        window.open(whatsappURL, '_blank');
-    }
-</script>
-
-
-    <!-- Footer -->
-    <footer class="bg-[#1a1a1a] text-[#f2f2f2] py-12 px-6">
-        <div class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <a href="#" class="text-2xl font-bold">
-                        <span class="text-[#e83528]">Gets</span>Fly Digital
-                    </a>
-                    <p class="mt-4">
-                        Creating digital experiences that elevate brands and connect with audiences.
-                    </p>
+        <!-- Stats Section -->
+        <section class="stats">
+            <div class="stats-container">
+                <div class="stat-item" data-target="100">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Projects Completed</div>
                 </div>
-              
-                <div class="md:text-right">
-                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
-                    <div class="flex md:justify-end space-x-4">
-                        <a href="https://www.instagram.com/getsflydigital" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#e83528] transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/+919940590590" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#e83528] transition">
-  <i class="fab fa-whatsapp text-white"></i>
-</a>
-                        </a>
-                     
-                    
-                        <a href="http://discordapp.com/users/1399362865344811090" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#e83528] transition">
-                            <i class="fab fa-discord"> </i>
-                        </a>
+                <div class="stat-item" data-target="50">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item" data-target="5">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Years of Expertise</div>
+                </div>
+            </div>
+            <p class="stats-subtext">Powered by creativity, driven by results.</p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <h2 class="section-title">Our Expertise</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎬</div>
+                    <h3>Video Editing & Production</h3>
+                    <p>Professional video content that captivates and engages your audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📍</div>
+                    <h3>Google My Business Optimization</h3>
+                    <p>Boost your local presence and get found by customers near you.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Social Media Marketing</h3>
+                    <p>Strategic campaigns that drive engagement and build communities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Graphic Design & Branding</h3>
+                    <p>Stunning visuals that make your brand unforgettable.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Website & App Development</h3>
+                    <p>Modern, responsive digital experiences built to convert.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Creative Works</h3>
+                    <p>Innovative content that tells your brand's unique story.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Social Media Management</h3>
+                    <p>Consistent, engaging content that grows your online presence.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📸</div>
+                    <h3>Digital Photography & Shooting</h3>
+                    <p>High-quality imagery that showcases your brand beautifully.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📢</div>
+                    <h3>Advertising & Campaigns</h3>
+                    <p>Data-driven campaigns that maximize ROI and reach.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Meta Ads / Google Ads</h3>
+                    <p>Targeted advertising that converts visitors into customers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">E</div>
+                    <div class="testimonial-text">"Impressive 10/10! GetsFly truly delivers results."</div>
+                    <div class="testimonial-author">— EIB</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">R</div>
+                    <div class="testimonial-text">"GetsFly team built my Google My Business profile — honestly great
+                        work!"
                     </div>
+                    <div class="testimonial-author">— Ravi</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-avatar">L</div>
+                    <div class="testimonial-text">"எங்கள் Reels எடிட் செய்ததற்கு நன்றி GetsFly"</div>
+                    <div class="testimonial-author">— Malar Naturals</div>
                 </div>
             </div>
-            
-            <div class="border-t border-[#333] mt-12 pt-8 text-center text-sm">
-                <p>&copy; 2023 GetsFly Digital. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        </section>
 
-    <!-- Scroll to Top Button -->
-    <button id="scrollTop" class="fixed bottom-8 right-8 w-12 h-12 bg-[#e83528] text-white rounded-full flex items-center justify-center shadow-lg scroll-top hidden">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <!-- CTA Section -->
+        <section id="contact" class="cta-section">
+            <h2>Ready to Grow Your Brand?</h2>
+            <p>Partner with GetsFly and let's take your business to new heights.</p>
+            <a href="contactus.html" class="cta-button">Contact GetsFly Now</a>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="copyright">
+                    © 2025 GetsFly Digital Marketing Agency
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/GetsFlyDigital" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/getsflydigital/" aria-label="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GetsFlyDigital" aria-label="YouTube"><i
+                            class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        // Client Counter Animation
-        function animateValue(id, start, end, duration) {
-            const obj = document.getElementById(id);
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                obj.innerHTML = Math.floor(progress * (end - start) + start) + "+";
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-        
-        // Scroll to Top Button
-        const scrollTopBtn = document.getElementById('scrollTop');
-        
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.add('hidden');
+                document.getElementById('main-content').style.display = 'block';
+            }, 2200);
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.remove('hidden');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
             } else {
-                scrollTopBtn.classList.add('hidden');
+                navbar.classList.remove('scrolled');
             }
         });
-        
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const overlay = document.querySelector('.overlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a, .mobile-cta');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
             });
         });
-        
-        // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
+
+        // Animated Counter for Stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for Stats
+        const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.id === 'clientCount') {
-                        animateValue('clientCount', 0, 100, 1500);
-                    }
-                    entry.target.classList.add('animate-fadeIn');
+                    entry.target.classList.add('visible');
+                    const target = parseInt(entry.target.dataset.target);
+                    const numberElement = entry.target.querySelector('.stat-number');
+                    animateCounter(numberElement, target);
+                    statsObserver.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-item').forEach(item => {
+            statsObserver.observe(item);
         });
-        
-        // Observe elements that need animation
-        const animatedElements = document.querySelectorAll('[data-animate]');
-        animatedElements.forEach(el => observer.observe(el));
-        observer.observe(document.getElementById('clientCount'));
-        
-        // Mobile menu toggle (would need implementation)
-        const mobileMenuBtn = document.querySelector('.md\\:hidden');
-        mobileMenuBtn.addEventListener('click', () => {
-            // Implement mobile menu toggle functionality
-            console.log('Mobile menu clicked');
+
+        // Intersection Observer for Testimonials
+        const testimonialObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200);
+                    testimonialObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.testimonial-card').forEach(card => {
+            testimonialObserver.observe(card);
         });
     </script>
 </body>
+
 </html>
