@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetsFly Digital | Creative Digital Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1f1f1f 0%, #e83528 100%);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .team-card:hover .team-front {
+            transform: rotateY(180deg);
+        }
+        
+        .team-card:hover .team-back {
+            transform: rotateY(0deg);
+        }
+        
+        .team-front, .team-back {
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+        }
+        
+        .team-back {
+            transform: rotateY(180deg);
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            color: #7c3aed;
+            animation: glitch-effect 3s infinite;
+        }
+        
+        .glitch::after {
+            color: #e83528;
+            animation: glitch-effect 2s infinite reverse;
+        }
+        
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        .scroll-top {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+
+        /* Hero image adjustments */
+        .hero-images {
+            position: relative;
+            height: 300px;
+            margin-top: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-images {
+                height: auto;
+                margin-top: 0;
+            }
+        }
+
+        /* Larger tap targets for mobile */
+        a, button, input, .service-card {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body class="bg-[#f2f2f2] text-[#1f1f1f]">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-bold text-[#1f1f1f]">
+                    <span class="text-[#e83528]">Gets</span>Fly Digital
+                </a>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-4 lg:space-x-8">
+                <a href="AgencyHome.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Home</a>
+                <a href="services.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Services</a>
+                <a href="getsflyteam.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Team</a>
+                <a href="contactgetsfly.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition">Contact</a>
+                <a href="#contact" class="bg-[#e83528] text-white px-4 py-2 lg:px-6 lg:py-2 rounded-full font-medium hover:bg-[#7c3aed] transition whitespace-nowrap">
+                    Let's Build Your Brand 🚀
+                </a>
+            </div>
+            
+            <button id="mobileMenuButton" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+ <!-- In your head section, update the mobile menu styles -->
+<style>
+    /* Mobile menu styles - update these */
+    .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        display: none; /* Add this */
+    }
+    
+    .mobile-menu.open {
+        display: block; /* Add this */
+        max-height: 500px;
+    }
+</style>
+
+<!-- In your nav section, update the mobile menu HTML -->
+<div id="mobileMenu" class="mobile-menu md:hidden bg-white w-full px-4">
+    <div class="flex flex-col space-y-4 py-4">
+        <a href="index.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Home</a>
+        <a href="services.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Services</a>
+        <a href="getsflyteam.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Team</a>
+        <a href="contactgetsfly.html" class="text-[#1f1f1f] font-medium hover:text-[#e83528] transition py-2">Contact</a>
+        <a href="#contact" class="bg-[#e83528] text-white px-6 py-3 rounded-full font-medium hover:bg-[#7c3aed] transition text-center">
+            Let's Build Your Brand 🚀
+        </a>
+    </div>
+</div>
+
+<!-- Update your JavaScript at the bottom of the body -->
+<script>
+    // Mobile menu toggle functionality
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+    });
+
+    // Close menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+        });
+    });
+</script>
+</div>
+
+<script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-24 md:pt-32 pb-12 md:pb-20 px-4 sm:px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="glitch text-4xl sm:text-5xl md:text-6xl font-bold mb-4 md:mb-6" data-text="Create. Elevate. Dominate.">
+                    Create. Elevate. Dominate.
+                </h1>
+                <p class="text-lg md:text-xl mb-6 md:mb-8">
+                    Designs that actually land. Content that actually connects. GetsFly builds what brands need to stand out.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 md:space-x-4">
+                    <a href="#contact" class="bg-[#e83528] hover:bg-[#7c3aed] text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-bold text-center transition">
+                        Start Your Project
+                    </a>
+                    <a href="#portfolio" class="bg-transparent hover:bg-white hover:text-[#1f1f1f] border-2 border-white text-white px-6 py-3 md:px-8 md:py-3 rounded-full font-bold text-center transition">
+                        See Our Work
+                    </a>
+                </div>
+                <div class="mt-8 md:mt-12">
+                    <div class="flex items-center">
+                        <div class="text-3xl md:text-4xl font-bold mr-4" id="clientCount">0</div>
+                        <div class="text-base md:text-lg">
+                            <div>creators, brands & startups</div>
+                            <div class="relative inline-block font-bold text-white tracking-tight text-sm md:text-base lg:text-lg">
+                                <span class="absolute left-0 top-0 text-[#7c3aed] -z-10 blur-sm">trusting our work</span>
+                                trusting our work
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-20 px-4 sm:px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Everything You Need to Build & Scale Online</h2>
+            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+                Comprehensive digital solutions tailored to your brand's unique needs.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Service Card 1 -->
+                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
+                    <div class="text-[#7c3aed] text-4xl mb-4">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">Social Media Management</h3>
+                    <p class="text-[#666] text-sm md:text-base">Strategic content creation and scheduling for maximum engagement.</p>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
+                    <div class="text-[#7c3aed] text-4xl mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">Video Editing + Thumbnails</h3>
+                    <p class="text-[#666] text-sm md:text-base">Eye-catching visuals that stop the scroll and drive views.</p>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
+                    <div class="text-[#7c3aed] text-4xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">Website Design & Development</h3>
+                    <p class="text-[#666] text-sm md:text-base">Custom sites that convert visitors into customers.</p>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
+                    <div class="text-[#7c3aed] text-4xl mb-4">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">3D Modeling & Product Visualization</h3>
+                    <p class="text-[#666] text-sm md:text-base">Bring your products to life with stunning 3D renders.</p>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
+                    <div class="text-[#7c3aed] text-4xl mb-4">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">Branding + Starter Packs</h3>
+                    <p class="text-[#666] text-sm md:text-base">Complete visual identity systems that tell your story.</p>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card bg-[#f2f2f2] p-6 md:p-8 rounded-xl transition cursor-pointer">
+                    <div class="text-[#7c3aed] text-4xl mb-4">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-2">Ecommerce Setup & Ad Management</h3>
+                    <p class="text-[#666] text-sm md:text-base">Turn browsers into buyers with optimized shopping experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16 md:py-20 px-4 sm:px-6 bg-[#f2f2f2]">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Designs That Actually Land</h2>
+            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+                We don't just make it pretty. We make it click, save, share, and convert.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                    <div class="text-[#e83528] text-4xl mb-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Speed That Matches Your Grind</h3>
+                    <p class="text-[#666] text-sm md:text-base mb-4">
+                        Quick edits, clean delivery. We move at your pace without sacrificing quality.
+                    </p>
+                    <div class="text-[#7c3aed] font-medium text-sm md:text-base">Always moving, always sharp</div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                    <div class="text-[#e83528] text-4xl mb-4">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Designs That Actually Land</h3>
+                    <p class="text-[#666] text-sm md:text-base mb-4">
+                        Real strategy behind every graphic. Custom-crafted, never cookie-cutter.
+                    </p>
+                    <div class="text-[#7c3aed] font-medium text-sm md:text-base">Built to feel like your brand</div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                    <div class="text-[#e83528] text-4xl mb-4">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Creative That Cuts Through Noise</h3>
+                    <p class="text-[#666] text-sm md:text-base mb-4">
+                        Visuals that vibe and work. Edits with flow, graphics with purpose.
+                    </p>
+                    <div class="text-[#7c3aed] font-medium text-sm md:text-base">Built for clicks, not dust</div>
+                </div>
+            </div>
+            
+            <div class="mt-12 md:mt-16 text-center">
+                <p class="text-lg md:text-xl font-medium italic">
+                    "We make brands move."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 md:py-20 px-4 sm:px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Work Speaks Volumes</h2>
+            <p class="text-lg md:text-xl text-center mb-8 md:mb-12 max-w-3xl mx-auto">
+                A selection of projects we're proud to have created.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
+                    <div class="relative group">
+                        <img src="https://i.postimg.cc/0jvLkTpH/Valo-thumbnail.png" 
+                             alt="Brand Identity Project" 
+                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
+                        <div class="absolute inset-0 bg-[#e83528] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <span class="text-white text-lg md:text-xl font-bold"> Thumbnail </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
+                    <div class="relative group">
+                        <img src="https://i.postimg.cc/hPT1bJRx/0631-D2-D7-3-F4-E-41-B8-B093-6942-F008-F8-F3.png" 
+                             alt="Website Design" 
+                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
+                        <div class="absolute inset-0 bg-[#7c3aed] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <span class="text-white text-lg md:text-xl font-bold">Website Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
+                    <div class="relative group">
+                        <img src="https://i.postimg.cc/sDm90k1D/theospc-biz-thumbnail.png" 
+                             alt="Social Media Design" 
+                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
+                        <div class="absolute inset-0 bg-[#1f1f1f] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <span class="text-white text-lg md:text-xl font-bold">Social Media Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
+                    <div class="relative group">
+                        <img src="https://i.postimg.cc/3RLYqJMF/image.png" 
+                             alt="Product Visualization" 
+                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
+                        <div class="absolute inset-0 bg-[#e83528] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <span class="text-white text-lg md:text-xl font-bold">3D Product</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
+                    <div class="relative group">
+                        <img src="https://media.gettyimages.com/id/1037595872/video/color-grading-a-video-in-editing-tutorial.jpg?s=640x640&k=20&c=XBJSrBsPm2lh934FM1n-wwkHu8DZ3m_45CtPS8fOSuA=" 
+                             alt="Video Production" 
+                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
+                        <div class="absolute inset-0 bg-[#7c3aed] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <span class="text-white text-lg md:text-xl font-bold">Video Editing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item overflow-hidden rounded-xl cursor-pointer">
+                    <div class="relative group">
+                        <img src="https://www.creatopy.com/blog/wp-content/uploads/2023/04/The-Ultimate-Guide-to-YouTube-Advertising-How-To-Set-Up-Run-Effective-Ads.png" 
+                             alt="Ad Running" 
+                             class="w-full h-48 sm:h-56 md:h-64 object-cover transition duration-500">
+                        <div class="absolute inset-0 bg-[#1f1f1f] bg-opacity-80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <span class="text-white text-lg md:text-xl font-bold">AD Running </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-20 px-4 sm:px-6 bg-[#f2f2f2]">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">What Our Clients Say</h2>
+            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+                Don't just take our word for it - here's what our clients have to say.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                    <div class="text-[#7c3aed] text-3xl mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-[#666] text-sm md:text-base mb-4 md:mb-6 italic">
+                        "Nice Impressive 10/10."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#e83528] flex items-center justify-center text-white font-bold mr-3 md:mr-4">EIB</div>
+                        <div>
+                            <div class="font-bold text-sm md:text-base">EIB founder</div>
+                            <div class="text-[#666] text-xs md:text-sm">Elysian Interior & Builders</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                    <div class="text-[#7c3aed] text-3xl mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-[#666] text-sm md:text-base mb-4 md:mb-6 italic">
+                        "i'm very satisified with the service for someone who is seems to be new they do very well on their job and super professional Getsfly digital"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#1f1f1f] flex items-center justify-center text-white font-bold mr-3 md:mr-4">S.I</div>
+                        <div>
+                            <div class="font-bold text-sm md:text-base">Sujith.I</div>
+                            <div class="text-[#666] text-xs md:text-sm">CEO, Theos PC</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-sm">
+                    <div class="text-[#7c3aed] text-3xl mb-4">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="text-[#666] text-sm md:text-base mb-4 md:mb-6 italic">
+                        "Getsfly Digital is hardworking, kind, and always ready to help others. Their dedication and positive attitude make them a joy to be around."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#e83528] flex items-center justify-center text-white font-bold mr-3 md:mr-4">R</div>
+                        <div>
+                            <div class="font-bold text-sm md:text-base">Ravi</div>
+                            <div class="text-[#666] text-xs md:text-sm"> Rexify Founder</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-16 md:py-20 px-4 sm:px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Meet the Team</h2>
+            <p class="text-lg md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto">
+                The creative minds behind GetsFly Digital.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-card relative h-80 md:h-96">
+                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#e83528] mb-3 md:mb-4 overflow-hidden">
+                            <img src="https://i.postimg.cc/3JN2GCvR/charac-1-1.png" 
+                                 alt="Deva" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold">Deva</h3>
+                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Creative Director</p>
+                    </div>
+                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
+                            "Design isn't just what it looks like, it's how it works."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-card relative h-80 md:h-96">
+                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#7c3aed] mb-3 md:mb-4 overflow-hidden">
+                            <img src="https://i.postimg.cc/jjBR8T8m/charac-2-1.png" 
+                                 alt="Sujith" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold">Sujith</h3>
+                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Video Editing Expert</p>
+                    </div>
+                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
+                            "Every frame has purpose."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-card relative h-80 md:h-96">
+                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#e83528] mb-3 md:mb-4 overflow-hidden">
+                            <img src="https://i.postimg.cc/LsPqSYkD/image.png" 
+                                 alt="Marcus Chen" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold">Chidambaram</h3>
+                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Marketing and business strategist</p>
+                    </div>
+                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
+                            "Smart strategy fuels sustainable business growth."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-card relative h-80 md:h-96">
+                    <div class="team-front absolute inset-0 bg-[#f2f2f2] rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full bg-[#7c3aed] mb-3 md:mb-4 overflow-hidden">
+                            <img src="https://i.postimg.cc/fTdfHLpc/image.png" 
+                                 alt="Taylor Wright" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold">Yasar</h3>
+                        <p class="text-[#7c3aed] font-medium text-sm md:text-base">Content Management Lead</p>
+                    </div>
+                    <div class="team-back absolute inset-0 bg-[#1f1f1f] text-white rounded-xl p-4 md:p-6 flex flex-col items-center justify-center">
+                        <p class="text-center text-sm md:text-base mb-3 md:mb-4">
+                            "Organize content deliver value every time."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-20 px-4 sm:px-6 bg-[#1f1f1f] text-white">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Build Something 🔥</h2>
+                <p class="text-lg md:text-xl mb-8 md:mb-12">
+                    Whether you're launching or scaling, we're here to design the digital side of your brand.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 text-left">
+                    <div>
+                        <label for="name" class="block mb-2 font-medium text-sm md:text-base">Your Name</label>
+                        <input type="text" id="name" class="w-full px-4 py-2 md:py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-sm md:text-base">
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 font-medium text-sm md:text-base">Email Address</label>
+                        <input type="email" id="email" class="w-full px-4 py-2 md:py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-sm md:text-base">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="project" class="block mb-2 font-medium text-sm md:text-base">Project Type</label>
+                        <select id="project" class="w-full px-4 py-2 md:py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed] text-sm md:text-base">
+                            <option value="">Select a service</option>
+                            <option value="Branding">Business Kit</option>
+                            <option value="Website Design">Website Developement</option>
+                            <option value="Social Media">Social Media Management</option>
+                            <option value="Video Production">Video Editing</option>
+                            <option value="Ecommerce">Graphic Designs</option>
+                            <option value="Other">Other</option>
+                        </select>
+                </div>
+                <div class="md:col-span-2">
+                    <label for="message" class="block mb-2 font-medium">Tell Us About Your Project</label>
+                    <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg bg-[#333] border border-[#555] focus:outline-none focus:ring-2 focus:ring-[#7c3aed]"></textarea>
+                </div>
+                <div class="md:col-span-2 text-center">
+                    <button onclick="sendToWhatsApp()" class="bg-[#e83528] hover:bg-[#7c3aed] text-white px-8 py-3 rounded-full font-bold transition">
+                        Start a Conversation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WhatsApp Script -->
+<script>
+    function sendToWhatsApp() {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const project = document.getElementById("project").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !project || !message) {
+            alert("Please fill all fields before sending.");
+            return;
+        }
+
+        const fullMessage = `Hello! 👋\n\nName: ${name}\nEmail: ${email}\nService: ${project}\nMessage: ${message}`;
+        const encodedMessage = encodeURIComponent(fullMessage);
+        const whatsappURL = `https://wa.me/919940590590?text=${encodedMessage}`;
+
+        window.open(whatsappURL, '_blank');
+    }
+</script>
+
+
+    <!-- Footer -->
+    <footer class="bg-[#1a1a1a] text-[#f2f2f2] py-12 px-6">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <a href="#" class="text-2xl font-bold">
+                        <span class="text-[#e83528]">Gets</span>Fly Digital
+                    </a>
+                    <p class="mt-4">
+                        Creating digital experiences that elevate brands and connect with audiences.
+                    </p>
+                </div>
+              
+                <div class="md:text-right">
+                    <h3 class="text-lg font-bold mb-4">Connect With Us</h3>
+                    <div class="flex md:justify-end space-x-4">
+                        <a href="https://www.instagram.com/getsflydigital" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#e83528] transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/+919940590590" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#e83528] transition">
+  <i class="fab fa-whatsapp text-white"></i>
+</a>
+                        </a>
+                     
+                    
+                        <a href="http://discordapp.com/users/1399362865344811090" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center hover:bg-[#e83528] transition">
+                            <i class="fab fa-discord"> </i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-[#333] mt-12 pt-8 text-center text-sm">
+                <p>&copy; 2023 GetsFly Digital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTop" class="fixed bottom-8 right-8 w-12 h-12 bg-[#e83528] text-white rounded-full flex items-center justify-center shadow-lg scroll-top hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Client Counter Animation
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + "+";
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'clientCount') {
+                        animateValue('clientCount', 0, 100, 1500);
+                    }
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        // Observe elements that need animation
+        const animatedElements = document.querySelectorAll('[data-animate]');
+        animatedElements.forEach(el => observer.observe(el));
+        observer.observe(document.getElementById('clientCount'));
+        
+        // Mobile menu toggle (would need implementation)
+        const mobileMenuBtn = document.querySelector('.md\\:hidden');
+        mobileMenuBtn.addEventListener('click', () => {
+            // Implement mobile menu toggle functionality
+            console.log('Mobile menu clicked');
+        });
+    </script>
+</body>
+</html>
