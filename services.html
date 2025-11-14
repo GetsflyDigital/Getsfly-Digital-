@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetsFly - Services & Packages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0077FF;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #0077FF;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0077FF;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: #0077FF;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 14px;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.4);
+        }
+
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #333;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 280px;
+            height: 100vh;
+            background: #fff;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 80px 20px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .mobile-nav-links a:hover {
+            color: #0077FF;
+        }
+
+        .mobile-cta {
+            margin-top: auto;
+            background: #0077FF;
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .mobile-cta:hover {
+            background: #0055CC;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #0077FF 0%, #0099FF 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                left: 100%;
+            }
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .hero-cta {
+            background: #fff;
+            color: #0077FF;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 16px;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #0077FF;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 119, 255, 0.2);
+            border-color: #0077FF;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            color: #0077FF;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .service-card .subtitle {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .service-card ul li {
+            padding: 6px 0;
+            color: #555;
+            position: relative;
+            padding-left: 22px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .service-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #0077FF;
+            font-weight: 700;
+        }
+
+        .service-btn {
+            background: #0077FF;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .service-btn:hover {
+            transform: translateX(3px);
+            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.4);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f5f5f5;
+            padding: 60px 20px;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            display: none;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .testimonial p {
+            font-size: 16px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .testimonial h4 {
+            color: #0077FF;
+            font-size: 18px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(90deg, #0077FF 0%, #0055CC 100%);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 4s infinite;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            background: #fff;
+            color: #0077FF;
+            padding: 15px 35px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 16px;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Consultation Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #0077FF;
+        }
+
+        .modal h2 {
+            text-align: center;
+            color: #0077FF;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #0077FF;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+            background: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #0077FF;
+            box-shadow: 0 0 10px rgba(0, 119, 255, 0.2);
+        }
+
+        .submit-btn {
+            background: #0077FF;
+            color: #fff;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 119, 255, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: #fff;
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #666;
+            font-size: 20px;
+            transition: color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: #0077FF;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .section-title h2 {
+                font-size: 26px;
+            }
+
+            .service-card {
+                padding: 20px;
+            }
+
+            .service-card h3 {
+                font-size: 18px;
+            }
+
+            .testimonial {
+                padding: 20px;
+            }
+
+            .testimonial p {
+                font-size: 14px;
+            }
+
+            .cta-section h2 {
+                font-size: 26px;
+            }
+
+            .cta-section p {
+                font-size: 14px;
+            }
+
+            .modal-content {
+                padding: 20px;
+                margin: 10% auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .section-title h2 {
+                font-size: 22px;
+            }
+
+            .section-title p {
+                font-size: 14px;
+            }
+
+            .service-card h3 {
+                font-size: 16px;
+            }
+
+            .service-card ul li {
+                font-size: 13px;
+            }
+
+            .cta-section h2 {
+                font-size: 22px;
+            }
+
+            .cta-section p {
+                font-size: 13px;
+            }
+
+            .testimonial p {
+                font-size: 13px;
+            }
+
+            .testimonial h4 {
+                font-size: 16px;
+            }
+        }
+    </style>
+    <title>Digital Marketing & Creative Services | GetsFly Digital | Helps to Small Business </title>
+    <meta name="description"
+        content="Explore our services: social media management, video editing, graphic design, ad campaigns, and logo/product design.">
+    <meta name="description"
+        content="Ultimate Agency :Ultimate Getsfly, Superb Agency, Smartwork, ad campaigns, and Socialmedia Designs.">
+</head>
+
+<body>
+    <!-- Consultation Form Modal -->
+    <div class="modal" id="consultationModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Get a Free Consultation</h2>
+            <form id="consultationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Interested In</label>
+                    <select id="service" name="service" required>
+                        <option value="">Select a service</option>
+                        <option value="Starter Content Creator Pack">Starter Content Creator Pack</option>
+                        <option value="Content Marketing Pack">Content Marketing Pack</option>
+                        <option value="Social Media Management Pack">Social Media Management Pack</option>
+                        <option value="Social Media Marketing Pack">Social Media Marketing Pack</option>
+                        <option value="Creative Media Pack">Creative Media Pack</option>
+                        <option value="Digital Photography & Shooting Pack">Digital Photography & Shooting Pack</option>
+                        <option value="Business Branding Pack">Business Branding Pack</option>
+                        <option value="Ad Performance Pack">Ad Performance Pack</option>
+                        <option value="Visual Design Pack">Visual Design Pack</option>
+                        <option value="AI-Driven Ad Pack">AI-Driven Ad Pack</option>
+                        <option value="Video Production Pack">Video Production Pack</option>
+                        <option value="Google My Business Pack">Google My Business Pack</option>
+                        <option value="Website Development Pack">Website Development Pack</option>
+                        <option value="E-Commerce Builder Pack">E-Commerce Builder Pack</option>
+                        <option value="Performance Audit Pack">Performance Audit Pack</option>
+                        <option value="Reels & Shorts Pack">Reels & Shorts Pack</option>
+                        <option value="Creative Works Pack">Creative Works Pack</option>
+                        <option value="Business Launch Pack">Business Launch Pack</option>
+                        <option value="Digital Growth Pack">Digital Growth Pack</option>
+                        <option value="Complete Digital Marketing Pack">Complete Digital Marketing Pack</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Get Free Consultation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">GetsFly</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html" style="color: #0077FF;">Services</a></li>
+            <li><a href="casestudy.html">Case Studies</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+        <a href="#" class="nav-cta" id="openConsultation">Get a Free Consultation</a>
+
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="overlay" id="overlay"></div>
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="casestudy.html">Case Studies</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+        <a href="#" class="mobile-cta" id="mobileConsultation">Get a Free Consultation</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Our Services & Packages</h1>
+        <p>From startups to creators, GetsFly delivers full-scale digital solutions that help your brand grow.</p>
+        <a href="#" class="hero-cta" id="heroConsultation">Book a Free Call Now</a>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Explore Our Service Packs</h2>
+            <p>Choose from expertly crafted packages designed to meet every digital need.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Starter Content Creator Pack</h3>
+                <p class="subtitle">Bronze • Silver • Gold</p>
+                <ul>
+                    <li>Logo Design</li>
+                    <li>Banner Design</li>
+                    <li>Business Description Writing</li>
+                    <li>Starting 2 Thumbnails (optional)</li>
+                </ul>
+                <button class="service-btn" data-service="Starter Content Creator Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Content Marketing Pack</h3>
+                <p class="subtitle">Silver • Gold • Platinum</p>
+                <ul>
+                    <li>Blog Writing</li>
+                    <li>Content Creation (Reels / Shorts)</li>
+                    <li>Caption & Hashtag Strategy</li>
+                </ul>
+                <button class="service-btn" data-service="Content Marketing Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Social Media Management Pack</h3>
+                <p class="subtitle">Gold • Platinum • Diamond</p>
+                <ul>
+                    <li>Daily Posting & Scheduling</li>
+                    <li>Comment & Message Handling</li>
+                    <li>Monthly Growth Report</li>
+                </ul>
+                <button class="service-btn" data-service="Social Media Management Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Social Media Marketing Pack</h3>
+                <p class="subtitle">Platinum • Diamond • Premium</p>
+                <ul>
+                    <li>Ad Campaign Setup (Meta / Google)</li>
+                    <li>Content Creation</li>
+                    <li>Social Media Management</li>
+                </ul>
+                <button class="service-btn" data-service="Social Media Marketing Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Creative Media Pack</h3>
+                <p class="subtitle">Gold • Platinum • Premium</p>
+                <ul>
+                    <li>Video Editing & Production</li>
+                    <li>Motion Graphics</li>
+                    <li>AI Voiceovers (optional)</li>
+                </ul>
+                <button class="service-btn" data-service="Creative Media Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Digital Photography & Shooting Pack</h3>
+                <p class="subtitle">Gold • Platinum • Premium</p>
+                <ul>
+                    <li>Product Photography</li>
+                    <li>Product Video Shoot</li>
+                    <li>Digital Retouching</li>
+                </ul>
+                <button class="service-btn" data-service="Digital Photography & Shooting Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Business Branding Pack</h3>
+                <p class="subtitle">Silver • Gold • Platinum</p>
+                <ul>
+                    <li>Logo Design</li>
+                    <li>Brand Color Palette & Fonts</li>
+                    <li>Brand Identity Kit</li>
+                </ul>
+                <button class="service-btn" data-service="Business Branding Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Ad Performance Pack</h3>
+                <p class="subtitle">Coming Soon</p>
+                <ul>
+                    <li>Campaign Review</li>
+                    <li>A/B Testing</li>
+                    <li>ROI Reporting</li>
+                </ul>
+                <button class="service-btn" data-service="Ad Performance Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Visual Design Pack</h3>
+                <p class="subtitle">Bronze • Silver • Gold • Platinum</p>
+                <ul>
+                    <li>Banners & Posters</li>
+                    <li>Flyers & Brochures</li>
+                    <li>Social Media Post Design</li>
+                    <li>All Types of Graphic Design</li>
+                </ul>
+                <button class="service-btn" data-service="Visual Design Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>AI-Driven Ad Pack</h3>
+                <p class="subtitle">Platinum • Diamond • Premium</p>
+                <ul>
+                    <li>AI Ad Shooting & Script Creation</li>
+                    <li>Paid Ad Campaign (Meta / Google)</li>
+                    <li>Campaign Audit</li>
+                </ul>
+                <button class="service-btn" data-service="AI-Driven Ad Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Video Production Pack</h3>
+                <p class="subtitle">Gold • Platinum • Premium</p>
+                <ul>
+                    <li>Concept Planning</li>
+                    <li>Shooting & Editing</li>
+                    <li>Background Music & Captions</li>
+                </ul>
+                <button class="service-btn" data-service="Video Production Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Google My Business Pack</h3>
+                <p class="subtitle">Silver • Gold • Platinum</p>
+                <ul>
+                    <li>GMB Setup & Optimization</li>
+                    <li>Review Management</li>
+                    <li>Local Reach Strategy</li>
+                </ul>
+                <button class="service-btn" data-service="Google My Business Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Website Development Pack</h3>
+                <p class="subtitle">Gold • Platinum • Premium</p>
+                <ul>
+                    <li>Website Design & Development</li>
+                    <li>Mobile Optimization</li>
+                    <li>Analytics Setup</li>
+                </ul>
+                <button class="service-btn" data-service="Website Development Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>E-Commerce Builder Pack</h3>
+                <p class="subtitle">Platinum • Diamond • Premium</p>
+                <ul>
+                    <li>Online Store Development</li>
+                    <li>Product Uploads</li>
+                    <li>Payment Gateway Integration</li>
+                </ul>
+                <button class="service-btn" data-service="E-Commerce Builder Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Performance Audit Pack</h3>
+                <p class="subtitle">Gold • Platinum • Diamond</p>
+                <ul>
+                    <li>Social Media Audit</li>
+                    <li>Ad Campaign Audit</li>
+                    <li>Competitor Analysis</li>
+                </ul>
+                <button class="service-btn" data-service="Performance Audit Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Reels & Shorts Pack</h3>
+                <p class="subtitle">Silver • Gold • Platinum</p>
+                <ul>
+                    <li>Short-Form Video Creation</li>
+                    <li>Captions & Hashtags</li>
+                    <li>Scheduling & Posting Plan</li>
+                </ul>
+                <button class="service-btn" data-service="Reels & Shorts Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Creative Works Pack</h3>
+                <p class="subtitle">Platinum • Diamond • Premium</p>
+                <ul>
+                    <li>Concept Ideation</li>
+                    <li>Script Writing</li>
+                    <li>Storyboarding & Editing</li>
+                </ul>
+                <button class="service-btn" data-service="Creative Works Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Business Launch Pack</h3>
+                <p class="subtitle">Gold • Platinum • Premium</p>
+                <ul>
+                    <li>Logo & Branding</li>
+                    <li>Website Setup</li>
+                    <li>Social Media Page Setup</li>
+                </ul>
+                <button class="service-btn" data-service="Business Launch Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Digital Growth Pack</h3>
+                <p class="subtitle">Platinum • Diamond • Premium</p>
+                <ul>
+                    <li>Social Media Marketing</li>
+                    <li>Ad Campaign Management</li>
+                    <li>Analytics & Optimization</li>
+                </ul>
+                <button class="service-btn" data-service="Digital Growth Pack">Get This Package</button>
+            </div>
+
+            <div class="service-card">
+                <h3>Complete Digital Marketing Pack</h3>
+                <p class="subtitle">Diamond • Premium</p>
+                <ul>
+                    <li>Social Media Management</li>
+                    <li>Paid Ads (Meta / Google)</li>
+                    <li>Content Creation</li>
+                    <li>Monthly Reports</li>
+                </ul>
+                <button class="service-btn" data-service="Complete Digital Marketing Pack">Get This Package</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial active">
+                <p>"I recently collaborated with GetFly for editing my Zero to Software Developer video, and I must say
+                    their work is absolutely amazing! 🎉 The editing was clean, professional, and engaging, which made
+                    the video more impactful. Many people loved the final output and I've received great responses from
+                    my audience. Thank you GetFlys for bringing my vision to life with such creativity and perfection
+                    🙌🔥. Looking forward to working with you on more projects!"</p>
+                <h4>— LearnMade</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <h2>Ready to Grow Your Brand?</h2>
+        <p>Partner with GetsFly and let's take your business to new heights.</p>
+        <a href="https://wa.me/919940590590" class="cta-btn">Contact GetsFly Now</a>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                © 2025 GetsFly Digital Marketing Agency
+            </div>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/GetsFlyDigital" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/getsflydigital/" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@GetsFlyDigital" aria-label="YouTube"><i
+                        class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.getElementById('overlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Consultation Modal Functionality
+        const consultationModal = document.getElementById('consultationModal');
+        const openConsultation = document.getElementById('openConsultation');
+        const heroConsultation = document.getElementById('heroConsultation');
+        const mobileConsultation = document.getElementById('mobileConsultation');
+        const closeModal = document.getElementById('closeModal');
+        const serviceButtons = document.querySelectorAll('.service-btn');
+        const serviceSelect = document.getElementById('service');
+
+        // Open modal functions
+        function openConsultationModal(service = '') {
+            if (service) {
+                serviceSelect.value = service;
+            }
+            consultationModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Event listeners for opening modal
+        openConsultation.addEventListener('click', (e) => {
+            e.preventDefault();
+            openConsultationModal();
+        });
+
+        heroConsultation.addEventListener('click', (e) => {
+            e.preventDefault();
+            openConsultationModal();
+        });
+
+        mobileConsultation.addEventListener('click', (e) => {
+            e.preventDefault();
+            openConsultationModal();
+            // Close mobile menu
+            mobileMenuBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Service buttons - open modal with pre-selected service
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const service = button.getAttribute('data-service');
+                openConsultationModal(service);
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', () => {
+            consultationModal.style.display = 'none';
+            document.body.style.overflow = '';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === consultationModal) {
+                consultationModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Form submission
+        document.getElementById('consultationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const service = formData.get('service');
+
+            // Create WhatsApp message
+            const whatsappMessage = `Hi GetsFly Team! I'm ${name} and I'm interested in the ${service} package. I'd like to schedule a free consultation.`;
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const whatsappURL = `https://wa.me/919940590590?text=${encodedMessage}`;
+
+            // Show confirmation and redirect
+            alert('Thank you for your interest! Redirecting to WhatsApp to schedule your free consultation.');
+            window.open(whatsappURL, '_blank');
+
+            // Close modal and reset form
+            consultationModal.style.display = 'none';
+            document.body.style.overflow = '';
+            this.reset();
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
+</body>
+
+</html>
